@@ -219,7 +219,7 @@ def predict_and_visualize(data2, center, forecast_days=30):
         if hour in recent_data['Hour'].unique():
             print(f"\n分析 {hour}:00 的时间序列...")
             hour_data = recent_data[recent_data['Hour'] == hour].set_index('Date')['Quantity']
-            
+            # hour data可能数据量太小，导致ARIMA模型构建失败
             # 时序数据平稳性检测
             original_ADF = ADF(hour_data)
             print(f"{hour}:00 的ADF检验结果为:", original_ADF)
